@@ -1,17 +1,15 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, Container } from "@mui/material";
+import { useParams } from "next/navigation"; // ✅ Use `useParams` to get the ID
+import "@/app/globals.css";
 
-export default function ProductDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id } = params;
+export default function ProductDetailPage() {
+  const params = useParams(); // ✅ Get the `id` dynamically
+  const id = params.id as string; // ✅ Ensure it's a string
 
   return (
-    <div>
+    <Container>
       <Typography variant="h5">货品详情 - SKU: {id}</Typography>
       <Typography>名称: 苹果</Typography>
       <Typography>库存: 50</Typography>
@@ -21,6 +19,6 @@ export default function ProductDetailPage({
       <Button variant="contained" color="error">
         ➖ 售出
       </Button>
-    </div>
+    </Container>
   );
 }

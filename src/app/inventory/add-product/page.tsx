@@ -62,6 +62,7 @@ export default function AddProductPage() {
       setLoading(false);
       router.push("/inventory");
     } catch (err) {
+      console.error("Failed to add product. Please try again:", err);
       setError("Failed to add product. Please try again.");
       setLoading(false);
     }

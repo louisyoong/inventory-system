@@ -1,3 +1,5 @@
+"use client";
+
 import { Typography, Button } from "@mui/material";
 import Link from "next/link";
 import "@/app/globals.css";

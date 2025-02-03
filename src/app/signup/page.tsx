@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { Button, Container, TextField, Typography } from "@mui/material";
+import "@/app/globals.css";
 
 const db = getFirestore(); // Initialize Firestore
 
@@ -36,8 +37,12 @@ export default function SignupPage() {
 
       setSuccess("Account created successfully! Redirecting to login...");
       setTimeout(() => router.push("/login"), 3000); // Redirect after 3 seconds
-    } catch (err: any) {
-      setError(err.message); // Show error message
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
     }
   };
 

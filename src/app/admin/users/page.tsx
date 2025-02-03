@@ -15,6 +15,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import "@/app/globals.css";
 
 type UserData = {
   id: string;
@@ -36,7 +37,7 @@ export default function UserManagementPage() {
         fetchUserData(user.uid);
       }
     }
-  }, [user, loading]);
+  }, [user, loading, router]);
 
   const fetchUserData = async (userId: string) => {
     try {
@@ -47,6 +48,7 @@ export default function UserManagementPage() {
         setError("User not found.");
       }
     } catch (err) {
+      console.error("Error:", err);
       setError("Failed to load user data.");
     }
   };

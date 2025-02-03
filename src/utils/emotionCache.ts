@@ -1,8 +1,7 @@
 import createCache from "@emotion/cache";
 
-// Client-side cache, shared for the entire session
-const isBrowser = typeof document !== "undefined";
-
 export default function createEmotionCache() {
-  return createCache({ key: "css", prepend: true });
+  const isBrowser = typeof document !== "undefined";  // ✅ Now it's used inside the function
+
+  return createCache({ key: isBrowser ? "css" : "server-css" });
 }

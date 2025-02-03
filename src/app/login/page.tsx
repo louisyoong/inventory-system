@@ -4,7 +4,8 @@ import { useState } from "react";
 import { auth } from "@/firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { Button, Container, TextField, Typography, Link } from "@mui/material";
+import { Button, Container, TextField, Typography } from "@mui/material";
+import "@/app/globals.css";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,8 +18,12 @@ export default function LoginPage() {
       setError("");
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/inventory"); // Redirect to inventory after login
-    } catch (err: any) {
-      setError("Invalid email or password. Please try again.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
     }
   };
 

@@ -28,7 +28,7 @@ export default function RootLayout({
           <CssBaseline />
           <AuthProvider>
             <AppBar position="static" className="bg-yellow-500">
-              <Toolbar className="flex justify-between w-100">
+              <Toolbar className="flex items-center font-bold justify-between w-100">
                 {/* Title aligned to the left */}
                 <Typography
                   variant="h6"
@@ -38,12 +38,12 @@ export default function RootLayout({
                 </Typography>
 
                 {/* Menu aligned to the right */}
-                <div className="flex justify-end">
+                <div className="flex justify-end p-2">
                   <AuthMenu />
                 </div>
               </Toolbar>
             </AppBar>
-            <Container className="px-4">{children}</Container>
+            <Container className="p-4">{children}</Container>
           </AuthProvider>
         </CacheProvider>
       </body>

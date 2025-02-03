@@ -55,7 +55,7 @@ export default function InventoryPage() {
     } else if (user) {
       fetchProducts();
     }
-  }, [user, loading]);
+  }, [user, loading, router]);
 
   const fetchProducts = async () => {
     try {
@@ -66,6 +66,7 @@ export default function InventoryPage() {
       });
       setProducts(productsList);
     } catch (err) {
+      console.error("Error:", err);
       setError("Failed to load products.");
     }
   };
@@ -99,6 +100,7 @@ export default function InventoryPage() {
       setEditingProduct(null);
       fetchProducts(); // Refresh data after update
     } catch (err) {
+      console.error("Error:", err);
       setError("Failed to update product.");
     }
   };
@@ -109,6 +111,7 @@ export default function InventoryPage() {
       await deleteDoc(doc(db, "products", productId));
       fetchProducts(); // Refresh data after deletion
     } catch (err) {
+      console.error("Error:", err);
       setError("Failed to delete product.");
     }
   };
