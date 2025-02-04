@@ -28,41 +28,48 @@ export default function LoginPage() {
   };
 
   return (
-    <Container maxWidth="xs" className="tw-mt-10">
-      <Typography variant="h4" className="tw-text-center tw-mb-4">
-        Login
-      </Typography>
-      {error && (
-        <Typography color="error" className="tw-mb-4">
-          {error}
-        </Typography>
-      )}
-      <TextField
-        label="Email"
-        fullWidth
-        className="tw-mb-5"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        size="small"
-      />
-      <TextField
-        label="Password"
-        type="password"
-        fullWidth
-        className="tw-mb-5"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        size="small"
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        fullWidth
-        className="tw-bg-green-700"
-        onClick={handleLogin}
+    <div className="tw-h-screen tw-flex tw-items-center">
+      <Container
+        maxWidth="sm"
+        className="tw-border tw-rounded tw-border-green-800 tw-p-10 tw-drop-shadow-md"
       >
-        Login
-      </Button>
-    </Container>
+        <Typography
+          variant="h4"
+          className="tw-text-center tw-mb-4 tw-font-bold"
+        >
+          Login
+        </Typography>
+        {error && (
+          <Typography color="error" className="tw-mb-4">
+            {error}
+          </Typography>
+        )}
+        <TextField
+          label="Email"
+          fullWidth
+          className="tw-mb-5"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          fullWidth
+          className="tw-mb-5"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          className="tw-bg-green-700"
+          onClick={handleLogin}
+          size="large"
+        >
+          Login
+        </Button>
+      </Container>
+    </div>
   );
 }

@@ -69,8 +69,8 @@ export default function AddProductPage() {
   };
 
   return (
-    <Container maxWidth="xs" className="mt-10">
-      <Typography variant="h4" className="tw-text-center tw-my-5">
+    <Container maxWidth="lg" className="tw-mt-10">
+      <Typography variant="h4" className="tw-text-left tw-font-bold tw-my-5">
         Add Product
       </Typography>
       {error && <Typography color="error">{error}</Typography>}
@@ -80,7 +80,6 @@ export default function AddProductPage() {
         className="tw-mb-4"
         value={sku}
         onChange={(e) => setSku(e.target.value)}
-        size="small"
       />
       <TextField
         label="Product Name"
@@ -88,7 +87,6 @@ export default function AddProductPage() {
         className="tw-mb-4"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        size="small"
       />
       <TextField
         label="Price"
@@ -97,7 +95,6 @@ export default function AddProductPage() {
         className="tw-mb-4"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
-        size="small"
       />
       <TextField
         label="Quantity"
@@ -106,7 +103,6 @@ export default function AddProductPage() {
         className="tw-mb-4"
         value={quantity}
         onChange={(e) => setQuantity(e.target.value)}
-        size="small"
       />
       <Button
         variant="contained"
@@ -115,6 +111,7 @@ export default function AddProductPage() {
         onClick={handleAddProduct}
         disabled={loading}
         className="tw-mx-1 tw-bg-green-700"
+        size="large"
       >
         {loading ? "Adding..." : "Add Product"}
       </Button>

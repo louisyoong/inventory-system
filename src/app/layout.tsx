@@ -1,18 +1,11 @@
 "use client";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "@/utils/emotionCache";
-import {
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  Typography,
-  Container,
-  Button,
-} from "@mui/material";
+import { CssBaseline, Container } from "@mui/material";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
-import Link from "next/link";
 import "@/app/globals.css";
-import { useRouter } from "next/navigation";
+import Header from "./component/Header";
+import { usePathname } from "next/navigation";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -27,7 +20,7 @@ export default function RootLayout({
         <CacheProvider value={clientSideEmotionCache}>
           <CssBaseline />
           <AuthProvider>
-            <Header />
+            <AuthHeaderWrapper />
             <Container className="p-4">{children}</Container>
           </AuthProvider>
         </CacheProvider>
@@ -36,40 +29,14 @@ export default function RootLayout({
   );
 }
 
-// Header component
-function Header() {
+// Wrapper to conditionally render the Header
+function AuthHeaderWrapper() {
   const { user, loading } = useAuth();
-  const router = useRouter();
+  const pathname = usePathname();
 
-  if (loading) return null; // Don't render the header until loading is complete
+  if (loading) return null; // Wait until loading is complete
+  if (pathname === "/login") return null; // Hide Header on the /login page
+  if (!user) return null; // Hide Header if the user is not logged in
 
-  const handleLogout = () => {
-    router.push("/login"); // Redirect to the login page
-  };
-
-  return (
-    <AppBar position="static" className="tw-bg-green-700">
-      <Toolbar className="tw-flex tw-items-center tw-font-bold tw-justify-between tw-w-100">
-        <Typography
-          variant="h6"
-          className="tw-flex-grow tw-text-left tw-text-gray-800"
-        >
-          Neighbourmart Inventory System
-        </Typography>
-        {user && (
-          <div className="tw-flex tw-justify-end">
-            <Link href="/inventory">
-              <Button color="inherit">Inventory</Button>
-            </Link>
-            <Link href="/admin/users">
-              <Button color="inherit">User Management</Button>
-            </Link>
-            <Button color="inherit" onClick={handleLogout}>
-              Logout
-            </Button>
-          </div>
-        )}
-      </Toolbar>
-    </AppBar>
-  );
+  return <Header />;
 }
