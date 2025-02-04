@@ -21,11 +21,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false); // Mark loading as false after user check is complete
+      setLoading(false); // Stop loading after user state is determined
     });
 
     return () => unsubscribe();
   }, []);
+
+  if (loading) {
+    // Prevent mismatched rendering by showing a loader or nothing during the loading phase
+    return <div>Loading...</div>;
+  }
 
   return (
     <AuthContext.Provider value={{ user, loading }}>

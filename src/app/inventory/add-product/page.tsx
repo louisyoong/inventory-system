@@ -70,39 +70,43 @@ export default function AddProductPage() {
 
   return (
     <Container maxWidth="xs" className="mt-10">
-      <Typography variant="h4" className="text-center bg-yellow-500 mb-4">
+      <Typography variant="h4" className="tw-text-center tw-my-5">
         Add Product
       </Typography>
       {error && <Typography color="error">{error}</Typography>}
       <TextField
         label="SKU"
         fullWidth
-        className="mb-4"
+        className="tw-mb-4"
         value={sku}
         onChange={(e) => setSku(e.target.value)}
+        size="small"
       />
       <TextField
         label="Product Name"
         fullWidth
-        className="mb-4"
+        className="tw-mb-4"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        size="small"
       />
       <TextField
         label="Price"
         type="number"
         fullWidth
-        className="mb-4"
+        className="tw-mb-4"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
+        size="small"
       />
       <TextField
         label="Quantity"
         type="number"
         fullWidth
-        className="mb-4"
+        className="tw-mb-4"
         value={quantity}
         onChange={(e) => setQuantity(e.target.value)}
+        size="small"
       />
       <Button
         variant="contained"
@@ -110,6 +114,7 @@ export default function AddProductPage() {
         fullWidth
         onClick={handleAddProduct}
         disabled={loading}
+        className="tw-mx-1 tw-bg-green-700"
       >
         {loading ? "Adding..." : "Add Product"}
       </Button>

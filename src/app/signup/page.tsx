@@ -47,17 +47,17 @@ export default function SignupPage() {
   };
 
   return (
-    <Container maxWidth="xs" className="mt-10">
-      <Typography variant="h4" className="text-center mb-4">
+    <Container maxWidth="xs" className="tw-mt-10">
+      <Typography variant="h4" className="tw-text-center tw-mb-4">
         Sign Up
       </Typography>
       {error && (
-        <Typography color="error" className="mb-4">
+        <Typography color="error" className="tw-mb-4">
           {error}
         </Typography>
       )}
       {success && (
-        <Typography color="primary" className="mb-4">
+        <Typography color="primary" className="tw-mb-4">
           {success}
         </Typography>
       )}
@@ -72,7 +72,7 @@ export default function SignupPage() {
         label="Password"
         type="password"
         fullWidth
-        className="mb-4"
+        className="tw-mb-4"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />

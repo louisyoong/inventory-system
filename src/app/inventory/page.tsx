@@ -120,17 +120,20 @@ export default function InventoryPage() {
 
   return (
     <div>
-      <Typography variant="h5" className="mb-4 text-gray-800 text-bold mt-5">
+      <Typography
+        variant="h5"
+        className="tw-mb-4 tw-text-gray-800 tw-text-bold tw-mt-5"
+      >
         Inventory
       </Typography>
       {error && <Typography color="error">{error}</Typography>}
       <Button
         variant="contained"
         color="primary"
-        className="mb-4 bg-yellow-500 text-gray-800"
+        className="tw-mb-4 tw-bg-green-700 tw-text-white"
         onClick={() => router.push("/inventory/add-product")}
       >
-        ➕ Add Product
+        + Add Product
       </Button>
       <TableContainer component={Paper}>
         <Table>
@@ -195,7 +198,7 @@ export default function InventoryPage() {
                         variant="contained"
                         size="small"
                         onClick={() => handleSaveEdit(product.id)}
-                        className="mx-1"
+                        className="tw-mx-1 tw-bg-green-700"
                       >
                         Save
                       </Button>
@@ -203,6 +206,7 @@ export default function InventoryPage() {
                         variant="outlined"
                         size="small"
                         onClick={() => setEditingProduct(null)}
+                        className="tw-mx-1 tw-border-green-700 tw-text-green-700"
                       >
                         Cancel
                       </Button>
@@ -213,7 +217,7 @@ export default function InventoryPage() {
                         variant="outlined"
                         size="small"
                         onClick={() => handleEditClick(product)}
-                        className="mx-1"
+                        className="tw-mx-1 tw-border-green-700 tw-text-green-700"
                       >
                         Edit
                       </Button>

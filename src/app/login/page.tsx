@@ -28,34 +28,37 @@ export default function LoginPage() {
   };
 
   return (
-    <Container maxWidth="xs" className="mt-10">
-      <Typography variant="h4" className="text-center mb-4">
+    <Container maxWidth="xs" className="tw-mt-10">
+      <Typography variant="h4" className="tw-text-center tw-mb-4">
         Login
       </Typography>
       {error && (
-        <Typography color="error" className="mb-4">
+        <Typography color="error" className="tw-mb-4">
           {error}
         </Typography>
       )}
       <TextField
         label="Email"
         fullWidth
-        className="mb-4"
+        className="tw-mb-5"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        size="small"
       />
       <TextField
         label="Password"
         type="password"
         fullWidth
-        className="mb-4"
+        className="tw-mb-5"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        size="small"
       />
       <Button
         variant="contained"
         color="primary"
         fullWidth
+        className="tw-bg-green-700"
         onClick={handleLogin}
       >
         Login

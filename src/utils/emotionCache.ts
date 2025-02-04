@@ -1,7 +1,9 @@
 import createCache from "@emotion/cache";
 
-export default function createEmotionCache() {
-  const isBrowser = typeof document !== "undefined";  // ✅ Now it's used inside the function
+const createEmotionCache = () =>
+  createCache({
+    key: "mui",
+    prepend: true, // Ensures MUI styles are inserted before Tailwind
+  });
 
-  return createCache({ key: isBrowser ? "css" : "server-css" });
-}
+export default createEmotionCache;

@@ -6,13 +6,13 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
   Container,
+  Button,
 } from "@mui/material";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import "@/app/globals.css";
+import { useRouter } from "next/navigation";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -27,22 +27,7 @@ export default function RootLayout({
         <CacheProvider value={clientSideEmotionCache}>
           <CssBaseline />
           <AuthProvider>
-            <AppBar position="static" className="bg-yellow-500">
-              <Toolbar className="flex items-center font-bold justify-between w-100">
-                {/* Title aligned to the left */}
-                <Typography
-                  variant="h6"
-                  className="flex-grow text-left text-gray-800"
-                >
-                  Neighbourmart Inventory System
-                </Typography>
-
-                {/* Menu aligned to the right */}
-                <div className="flex justify-end p-2">
-                  <AuthMenu />
-                </div>
-              </Toolbar>
-            </AppBar>
+            <Header />
             <Container className="p-4">{children}</Container>
           </AuthProvider>
         </CacheProvider>
@@ -51,28 +36,40 @@ export default function RootLayout({
   );
 }
 
-// Component to show menu only after login
-function AuthMenu() {
-  const { user } = useAuth();
+// Header component
+function Header() {
+  const { user, loading } = useAuth();
   const router = useRouter();
 
+  if (loading) return null; // Don't render the header until loading is complete
+
   const handleLogout = () => {
-    router.push("/login"); // Redirect to login page after logout
+    router.push("/login"); // Redirect to the login page
   };
 
-  if (!user) return null; // Hide menu if user is not logged in
-
   return (
-    <div className="flex items-center space-x-4 text-gray-700">
-      <Link href="/inventory">
-        <Button color="inherit">Inventory</Button>
-      </Link>
-      <Link href="/admin/users">
-        <Button color="inherit">User Management</Button>
-      </Link>
-      <Button color="inherit" onClick={handleLogout}>
-        Logout
-      </Button>
-    </div>
+    <AppBar position="static" className="tw-bg-green-700">
+      <Toolbar className="tw-flex tw-items-center tw-font-bold tw-justify-between tw-w-100">
+        <Typography
+          variant="h6"
+          className="tw-flex-grow tw-text-left tw-text-gray-800"
+        >
+          Neighbourmart Inventory System
+        </Typography>
+        {user && (
+          <div className="tw-flex tw-justify-end">
+            <Link href="/inventory">
+              <Button color="inherit">Inventory</Button>
+            </Link>
+            <Link href="/admin/users">
+              <Button color="inherit">User Management</Button>
+            </Link>
+            <Button color="inherit" onClick={handleLogout}>
+              Logout
+            </Button>
+          </div>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
